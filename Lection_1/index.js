@@ -25,6 +25,13 @@ getSumNumber([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])
 Напишите код, который добавит символ двоеточие(':') между нечетными числами.
 Например, число 556 результат должен быть '5:56', 566 -> 566, 655 -> 65:5*/
 
+let arr = [1, 1, 2, 4, 5, 5, 6, 7, 7, 8, 9, 9, 10]
+let resString = arr.reduce((acc, value, index) => { 
+    if (value % 2 !== 0 && arr[index + 1] % 2 !== 0) {
+        return acc + value + ':';
+    }
+    return acc + value;
+}, '');
 ==============================================================================
 /*задача 4
 Создайте 2 массива с разной длинной. Необходимо написать код,который создаёт
@@ -93,6 +100,11 @@ arr.forEach((item) => {
 Напишите код, который проверит является строка полиндромом
 (слово, которое с обеих сторон читается одинаково, например РЕПЕР, ШАЛАШ)*/
 
+let str = prompt("Vvedite slovo");
+function itIsPolindrom(str) {
+  return str == str.split("").reverse().join("");
+}
+console.log(itIsPolindrom(str))
 ==============================================================================
 /*задача 10
 Написать функцию, которая принимает первым аргументом массив, а вторым любое значение,
@@ -112,6 +124,9 @@ search([‘Ivan’, ‘Petr’, ‘Sidor’], 'i') -> [‘Ivan’,'Sidor']
 search([‘Ivan’, ‘Petr’, ‘Sidor’, 'Petric'], 'eTr') -> [‘Petr’,'Petric']
 search([‘Ivan’, ‘Petr’, ‘Sidor’, 'Petric'], 'eTrooo') -> []*/
 
+function search(arr, str) {
+    return arr.filter((item) => item.toLowerCase().includes(str.toLowerCase()));
+  }
 ==============================================================================
 /*задача 12
 Написать функцию сравнения двух массивов, которая возвращает true или false
@@ -120,4 +135,15 @@ checkIsEqaul([1,2,3], [1,2,3]) -> true
 checkIsEqaul([1,2,3], [1,2,3,4]) -> false
 checkIsEqaul([1,2,3], [1,'2',3]) -> false*/
 
+function checkIsEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 ==============================================================================
