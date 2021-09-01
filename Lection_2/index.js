@@ -1,6 +1,6 @@
 /* Задача 1
 Сделайте промис, внутри которого будет setTimeout в 3 секунды, после которой промис должен зарезолвится (то есть выполнится успешно).*/
-/*
+
 let promise = new Promise((resolve, reject) => {
     setTimeout(() => resolve("GOOD"), 3000);
 })
@@ -8,12 +8,12 @@ promise
     .then((result) => {
         console.log(result);
     })
-*/
+
 //=================================================================================================================
 
 /* Задача 2
 Сделайте промис, внутри которого будет setTimeout в 3 секунды, после которой промис должен зареджектится (то есть выполнится с ошибкой).\*/
-/*
+
 let promise = new Promise((resolve, reject) => {
     setTimeout(() => reject(new Error("ERROR!!!!")), 3000);
 })
@@ -21,7 +21,7 @@ promise
     .catch((error) => {
         console.log(error);
     });
-*/
+
 //=================================================================================================================
 
 /* Задача 3
@@ -57,7 +57,7 @@ promiseThird
     .then((result) => {
         console.log(result);
     })
-    
+
 Promise.all([promiseFirst, promiseSecond, promiseThird])
     .then(array => array.reduce((sum, item) => {
         return sum + item
@@ -70,7 +70,7 @@ Promise.all([promiseFirst, promiseSecond, promiseThird])
 
 /* Задача 4
 Сделать запрос при помощи fetch на адрес https://jsonplaceholder.typicode.com/users, Отфильтровать массив пользователей, чтобы остались только пользователи с четными id.*/
-/*
+
 fetch('https://jsonplaceholder.typicode.com/users')
     .then((response) => {
         return response.json();
@@ -81,7 +81,7 @@ fetch('https://jsonplaceholder.typicode.com/users')
     .then((result) => {
         console.log(result);
     });
-*/
+
 //=================================================================================================================
 
 /* Задача 5
