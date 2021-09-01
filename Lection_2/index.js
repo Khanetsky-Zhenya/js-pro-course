@@ -87,6 +87,36 @@ fetch('https://jsonplaceholder.typicode.com/users')
 /* Задача 5
 Сделать запрос при помощи fetch на адрес https://jsonplaceholder.typicode.com/users, вывести список карточек пользователей, отобразить имя, телефон и остальную информацию каждого пользователя. Вывести в html внутри div с id = 1*/
 
+async function getUsers() {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users?id=1")
+    const result = await res.json()
+    console.log('user', result)
+
+    result.forEach((user) => {
+        const { name, email } = user;
+        const postElement = renderUser(name, email);
+        document.body.append(postElement)
+    });
+}
+getUsers()
+
+function renderUser(name, email) {
+    let container = document.createElement('div')
+    container.style = `
+    border: 1px solid red;
+    padding: 10px;
+    `
+    const userNameElement = document.createElement('h2')
+    userNameElement.innerHTML = name
+
+    const emailElement = document.createElement('p')
+    emailElement.innerHTML = email
+
+    container.append(userNameElement, emailElement)
+    return container;
+}
+renderUser()
+
 //=================================================================================================================
 
 /* Задача 6
