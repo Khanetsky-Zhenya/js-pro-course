@@ -31,20 +31,41 @@ promise
 function getRandonTimeOut(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
-let randonTimeOut = getRandonTimeOut(1, 6)
-console.log(randonTimeOut)
 
-let array = [
-new Promise((resolve, reject) => {
-    setTimeout(() => resolve(randonTimeOut), randonTimeOut*1000);
-}),
-new Promise((resolve, reject) => {
-    setTimeout(() => resolve(randonTimeOut), randonTimeOut*1000);
-}),
-new Promise((resolve, reject) => {
-    setTimeout(() => resolve(randonTimeOut), randonTimeOut*1000);
+let promiseFirst = new Promise((resolve, reject) => {
+    let randonTimeOut = getRandonTimeOut(1, 6)
+    setTimeout(() => resolve(randonTimeOut), randonTimeOut * 1000);
 })
-]
+promiseFirst
+    .then((result) => {
+        console.log(result);
+    })
+
+let promiseSecond = new Promise((resolve, reject) => {
+    let randonTimeOut = getRandonTimeOut(1, 6)
+    setTimeout(() => resolve(randonTimeOut), randonTimeOut * 1000);
+})
+promiseSecond
+    .then((result) => {
+        console.log(result);
+    })
+let promiseThird = new Promise((resolve, reject) => {
+    let randonTimeOut = getRandonTimeOut(1, 6)
+    setTimeout(() => resolve(randonTimeOut), randonTimeOut * 1000);
+})
+promiseThird
+    .then((result) => {
+        console.log(result);
+    })
+    
+Promise.all([promiseFirst, promiseSecond, promiseThird])
+    .then(array => array.reduce((sum, item) => {
+        return sum + item
+    }))
+    .then((result) => {
+        console.log(result);
+    })
+
 //=================================================================================================================
 
 /* Задача 4
