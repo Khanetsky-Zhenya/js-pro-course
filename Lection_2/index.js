@@ -27,7 +27,6 @@ promise
 /* Задача 3
 Сделайте 3 промиса, в каждом из которых расположена функция setTimeout со случайной задержкой от 1 до 5 секунд. Пусть каждый промис своим результатом возвращает эту задержку. С помощью Promise.all получите массив результатов, найдите его сумму, выведите на экран.*/
 
-
 function getRandonTimeOut(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
@@ -121,6 +120,27 @@ renderUser()
 
 /* Задача 6
 Сделать запрос при помощи fetch на адрес https://jsonplaceholder.typicode.com/users/${userId}/todos, userId получить при помощи prompt. Вывести todo list пользователя, отобразить текст тудушки и индикатор выполнена она или нет (чекбокс). Вывести в html внутри div с id = 2*/
+
+let promptId = prompt('Enter the number ID user (1-10)')
+console.log(promptId)
+async function getTodo() {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${promptId}/todos`)
+    const users = await res.json()
+    console.log('users', users)
+    let usersHtml = "";
+    for (let i = 0; i < users.length; i++) {
+        usersHtml +=
+            `<div class="card" style="border: 1px solid green; padding: 10px"
+       <h2>UserId: ${users[i].userId}</h2>
+       <h3>Title: ${users[i].title}</h3>
+       ${users[i].completed ? `<input type='checkbox' checked>` : `<input type='checkbox'>`}
+       </div>`;
+    }
+    console.log(usersHtml)
+    const body = document.querySelector('body')
+    body.innerHTML = usersHtml;
+}
+    getTodo()
 
 //=================================================================================================================
 
