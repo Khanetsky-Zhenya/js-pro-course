@@ -136,7 +136,6 @@ async function getTodo() {
        ${users[i].completed ? `<input type='checkbox' checked>` : `<input type='checkbox'>`}
        </div>`;
     }
-    console.log(usersHtml)
     const body = document.querySelector('body')
     body.innerHTML = usersHtml;
 }
@@ -155,3 +154,31 @@ async function getTodo() {
   "thumbnailUrl": "https://via.placeholder.com/150/d32776"
 },
 Дополнительно сделать, чтобы по нажатию на картинку картинка увеличивалась в размерах, повторное нажатие вернет картинку к исходному размеру. Вывести в html внутри div с id = 3*/
+
+let promptId = prompt('Enter the number ID photo (1-50)')
+
+async function getPhoto() {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/albums/1/photos?id=${promptId}`)
+    const promptIdPhoto = await res.json()
+    console.log('Photo', promptIdPhoto)
+
+    let result = `<div class="photo" style="border: 1px solid green; padding: 10px"
+    <h3>AlbumId: ${promptIdPhoto[0].albumId}</h3>
+    <h3>ID: ${promptIdPhoto[0].id}</h3>
+    <h4>Title: ${promptIdPhoto[0].title}</h4>
+    <img id="imgId" src="${promptIdPhoto[0].thumbnailUrl}">
+    </div>`;
+
+    const body = document.querySelector('body')
+    body.innerHTML = result;
+
+    let clickPhoto = document.querySelector("#imgId")
+    clickPhoto.onclick = function () {
+        if (clickPhoto.src === promptIdPhoto[0].thumbnailUrl) {
+            clickPhoto.src = promptIdPhoto[0].url;
+        } else if (clickPhoto.src === promptIdPhoto[0].url) {
+            clickPhoto.src = promptIdPhoto[0].thumbnailUrl;
+        }
+    };
+}
+getPhoto()
