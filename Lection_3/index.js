@@ -100,4 +100,26 @@ console.log(s.ucFirst('abcd'))
 console.log(s.ucWords('abcd adcnj gflkdf'))
 
 //========================================================================================================
+/*Задача 4
+Реализуйте класс User, который будет иметь следующие свойства:
+имя, фамилия, email; следующие методы: getFullName, getEmail.
+*/
 
+class User {
+    constructor(name, secondName, email){
+        this.name = name;
+        this.secondName = secondName;
+        this.email = email;
+    }
+    getFullName(){
+        return 'Полное имя: ' + this.name + ' '+this.secondName
+    }
+    getEmail(){
+        return 'Почта: '+ this.email
+    }
+}
+let g = new User('Vasya', 'Vasilev', 'vasya@email.com')
+console.log(g.getFullName())
+console.log(g.getEmail())
+
+//========================================================================================================
