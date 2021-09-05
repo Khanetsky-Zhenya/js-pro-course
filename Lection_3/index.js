@@ -123,3 +123,29 @@ console.log(g.getFullName())
 console.log(g.getEmail())
 
 //========================================================================================================
+/* Задача 5
+Реализуйте класс Student, который будет наследовать класс User.
+Этот класс должен иметь следующие свойства: name (имя, наследуется от User),
+surname (фамилия, наследуется от User), year (год поступления в вуз).
+Класс должен иметь метод getFullName() (наследуется от User), с помощью которого можно вывести одновременно 
+имя и фамилию студента.
+Также класс должен иметь метод getCourse(), который будет выводить текущий курс студента (от 1 до 5).
+Курс вычисляется так: нужно от текущего года отнять год поступления в вуз. \
+Текущий год получить программно, используя объект Date (https://learn.javascript.ru/datetime).
+*/
+
+class Student extends User {
+    constructor(name, secondName, year){
+        super(name, secondName);
+        this.year = year;
+    }
+    getCourse(){
+        let nowYear = new Date().getFullYear()
+        return nowYear - this.year
+    }
+}
+let studentFirst = new Student('Zhenya', 'Khanetsky', 2009)
+console.log(studentFirst.getFullName())
+console.log(studentFirst.getCourse())
+
+//========================================================================================================
